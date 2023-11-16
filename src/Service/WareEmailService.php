@@ -36,10 +36,5 @@ class WareEmailService
                 'productId' => $product->get('id')
             ]], $context
         );
-
-        //TODO: do the saving here
-        echo $email;
-        exit;
-
     }
 }

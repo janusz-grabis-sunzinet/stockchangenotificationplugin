@@ -32,7 +32,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
         $this->wareEmailService->saveWareEmail($email, $productNumber, $context);
 
-        //TODO: render back proper twig here
+        $route = $request->headers->get('referer');
+        return $this->redirect($route);
 
     }
 }
