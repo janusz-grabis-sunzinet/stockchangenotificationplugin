@@ -9,6 +9,7 @@ use StockChangeNotificationPlugin\Service\WareEmailService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+
 //use Sabre\Xml\Service;
 
 #[Route(defaults: ['_routeScope' => ['storefront']])] class WareEmailController extends StorefrontController
@@ -18,7 +19,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
     protected WareEmailService $wareEmailService;
 
-    public function __construct(WareEmailService $wareEmailService) {
+    public function __construct(WareEmailService $wareEmailService)
+    {
         $this->wareEmailService = $wareEmailService;
     }
 
@@ -28,7 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
         $email = $request->request->get('wareemail-customer-email');
         $productNumber = $request->request->get('wareemail-product-number');
 
-        $this->wareEmailService->saveWareEmail($email);
+        $this->wareEmailService->saveWareEmail($email, $context);
 
         //TODO: render back proper twig here
 

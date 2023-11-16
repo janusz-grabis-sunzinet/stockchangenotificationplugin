@@ -2,9 +2,11 @@
 
 use StockChangeNotificationPlugin\Core\Content\WareEmail;
 
-class WareEmailCollection extends EntityCollection {
+class WareEmailCollection extends EntityCollection
+{
 
-    protected function getExpectedClass() : string {
+    protected function getExpectedClass(): string
+    {
         return WareEmail::class;
     }
 }

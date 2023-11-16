@@ -6,11 +6,13 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\IntField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\StringField;
 use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
 use WareEmailCollection;
 
-class WareEmailDefinition extends EntityDefinition {
+class WareEmailDefinition extends EntityDefinition
+{
 
     public const ENTITY_NAME = 'ware_email';
 
@@ -20,7 +22,8 @@ class WareEmailDefinition extends EntityDefinition {
 
     }
 
-    public function getEntityClass(): string {
+    public function getEntityClass(): string
+    {
         return WareEmail::class;
     }
 
@@ -33,9 +36,9 @@ class WareEmailDefinition extends EntityDefinition {
     {
         //TODO: change ware_id to product_id, type to string
         return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+            //(new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new StringField('email', 'email'))->addFlags(new Required()),
-            (new IdField('ware_id', 'ware_id'))->addFlags(new Required())
+            (new IntField('ware_id', 'ware_id'))->addFlags(new Required())
         ]);
     }
 

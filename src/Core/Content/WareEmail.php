@@ -11,7 +11,7 @@ class WareEmail extends Entity {
 
     protected string $email;
 
-    protected string $wareId;
+    protected int $wareId;
 
 
 
