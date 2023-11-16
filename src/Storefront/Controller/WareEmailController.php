@@ -30,7 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
         $email = $request->request->get('wareemail-customer-email');
         $productNumber = $request->request->get('wareemail-product-number');
 
-        $this->wareEmailService->saveWareEmail($email, $context);
+        $this->wareEmailService->saveWareEmail($email, $productNumber, $context);
 
         //TODO: render back proper twig here
 

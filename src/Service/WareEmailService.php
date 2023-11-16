@@ -4,29 +4,35 @@ namespace StockChangeNotificationPlugin\Service;
 
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
+use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 
 class WareEmailService
 {
 
     protected EntityRepository $wareEmailRepository;
 
-    //protected Context $context;
+    protected EntityRepository $productRepository;
 
-    public function __construct(EntityRepository $wareEmailRepository)
+    public function __construct(EntityRepository $wareEmailRepository, EntityRepository $productRepository)
     {
 
         $this->wareEmailRepository = $wareEmailRepository;
-        //$this->context = $context;
+        $this->productRepository = $productRepository;
 
     }
 
-    public function saveWareEmail(string $email, Context $context): void
+    public function saveWareEmail(string $email, string $productNumber, Context $context): void
     {
+
+        $criteria = new Criteria();
+        $criteria->addFilter(new EqualsFilter('productNumber', $productNumber));
+        $product  = $this->productRepository->search($criteria, $context);
 
         $this->wareEmailRepository->create([
             [
-                'email' => 'abc'
-                //'ware_id' => 1
+                'email' => "abc",
+                'ware_id' => 1
             ]], $context
         );
 
