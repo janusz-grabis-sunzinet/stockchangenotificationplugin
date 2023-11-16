@@ -2,7 +2,9 @@
 
 namespace StockChangeNotificationPlugin\Core\Content;
 
+use Shopware\Core\Content\Product\ProductDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
@@ -34,11 +36,10 @@ class WareEmailDefinition extends EntityDefinition
 
     protected function defineFields(): FieldCollection
     {
-        //TODO: change ware_id to product_id, type to string
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new StringField('email', 'email'))->addFlags(new Required()),
-            (new IntField('ware_id', 'ware_id'))->addFlags(new Required())
+            new FkField('product_id', 'productId', ProductDefinition::class),
         ]);
     }
 

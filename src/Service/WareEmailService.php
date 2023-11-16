@@ -27,12 +27,13 @@ class WareEmailService
 
         $criteria = new Criteria();
         $criteria->addFilter(new EqualsFilter('productNumber', $productNumber));
-        $product  = $this->productRepository->search($criteria, $context);
+
+        $product  = $this->productRepository->search($criteria, $context)->first();
 
         $this->wareEmailRepository->create([
             [
                 'email' => "abc",
-                'ware_id' => 1
+                'productId' => $product->get('id')
             ]], $context
         );
 

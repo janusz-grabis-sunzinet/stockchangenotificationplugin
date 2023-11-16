@@ -18,11 +18,13 @@ class Migration1700051216WareEmail extends MigrationStep
 CREATE TABLE IF NOT EXISTS `ware_email` (
     `id` BINARY(16) NOT NULL,
     `email`   VARCHAR(255)    NOT NULL,
-    `product_number`   VARCHAR(255) NOT NULL,
+    `product_id`   BINARY(16) NOT NULL,
     `created_at` DATETIME(3) NOT NULL,
     `updated_at` DATETIME(3),
     
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    KEY `fk.stockchangenotificationplugin.product_id` (`product_id`),
+    CONSTRAINT `fk.stockchangenotificationplugin.product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 )
     ENGINE = InnoDB
     DEFAULT CHARSET = utf8mb4
