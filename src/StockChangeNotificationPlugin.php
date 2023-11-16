@@ -10,13 +10,15 @@ class StockChangeNotificationPlugin extends Plugin
 {
     public function uninstall(UninstallContext $uninstallContext): void
     {
-        // Remove or deactivate the data created by the plugin
-        $uninstallContext->getMigrationCollection()->migrateInPlace();
+
+        //TODO: run destructive migrations here
+        //$uninstallContext->getMigrationCollection()->migrateInPlace();
     }
 
     public function install(InstallContext $installContext): void
     {
-        $installContext->getMigrationCollection()->migrateDestructiveInPlace();
+        //TODO: run migrations here
+        //$installContext->getMigrationCollection()->migrateDestructiveInPlace();
     }
 
 

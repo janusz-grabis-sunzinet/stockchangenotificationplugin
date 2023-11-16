@@ -31,6 +31,7 @@ class WareEmailDefinition extends EntityDefinition {
 
     protected function defineFields(): FieldCollection
     {
+        //TODO: change ware_id to product_id, type to string
         return new FieldCollection([
             (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
             (new StringField('email', 'email'))->addFlags(new Required()),

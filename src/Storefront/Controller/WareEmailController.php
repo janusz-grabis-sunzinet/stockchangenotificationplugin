@@ -30,5 +30,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
         $this->wareEmailService->saveWareEmail($email);
 
+        //TODO: render back proper twig here
+
     }
 }
