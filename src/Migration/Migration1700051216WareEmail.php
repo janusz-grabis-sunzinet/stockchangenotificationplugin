@@ -16,7 +16,7 @@ class Migration1700051216WareEmail extends MigrationStep
     {
         $query = <<<SQL
 CREATE TABLE IF NOT EXISTS `ware_email` (
-    `id`                INT             NOT NULL,
+    `id`      INT NOT NULL AUTO_INCREMENT,
     `email`   VARCHAR(255)    NOT NULL,
     `ware_id`   INT NOT NULL,
     
