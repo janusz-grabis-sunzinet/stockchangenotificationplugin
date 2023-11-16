@@ -5,6 +5,7 @@ namespace StockChangeNotificationPlugin\Storefront\Controller;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Storefront\Controller\StorefrontController;
+use StockChangeNotificationPlugin\Service\WareEmailService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,8 +16,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
     protected $em;
 
-    public function __construct(/*EntityRepository $entityRepository*/) {
-        //$this->em = $entityRepository;
+    protected WareEmailService $wareEmailService;
+
+    public function __construct(WareEmailService $wareEmailService) {
+        $this->wareEmailService = $wareEmailService;
     }
 
     #[Route(path: '/wareemail/save', name: 'ware.email.save', defaults: [])]
@@ -25,7 +28,7 @@ use Symfony\Component\Routing\Annotation\Route;
         $email = $request->request->get('wareemail-customer-email');
         $productNumber = $request->request->get('wareemail-product-number');
 
-        echo "email: $email, productNumber: $productNumber"; exit;
+        $this->wareEmailService->saveWareEmail($email);
 
     }
 }
